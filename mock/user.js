@@ -31,18 +31,20 @@ module.exports = [
     response: config => {
       const { username } = config.body
       const token = tokens[username]
-
       // mock error
       if (!token) {
+        console.log('!token');
         return {
           code: 60204,
           message: 'Account and password are incorrect.'
         }
-      }
-
-      return {
-        code: 20000,
-        data: token
+      } else {
+        console.log('token')
+        return {
+          code: 20000,
+          message: 'Login success.',
+          data: token
+        }
       }
     }
   },
