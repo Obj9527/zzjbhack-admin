@@ -169,6 +169,33 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
+
+/*
+ *  todo: bug:2021-04-10
+ *  在登录状态将token清理掉，会无限循环访问/login，猜测是$store问题
+ */
+// 挂载路由导航守卫
+router.beforeEach((to, from, next) => {
+  /*
+  * to 将要访问的路径
+  * from 从哪个路径来
+  * next 函数 next() 放行 next('/login') 强制跳转
+  * */
+  if (to.path === '/login') {
+    console.log(`to.path: ${to.path}`)
+    next()
+    return
+  }
+  const token = window.sessionStorage.getItem('token')
+  if (!token){
+    console.log(`token: ${token}, force to /login`)
+    // todo: 先放行，之后fix bug
+    next()
+  }else {
+    next()
+  }
+})
+
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
