@@ -130,15 +130,12 @@ export default {
         const response = await login(this.loginForm)
         if (response.code === 20000){
           console.log(response)
-          window.sessionStorage.setItem('token', response.data.token)
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
           })
-          /*this.$router.push('/')
-          this.loading = false*/
         }
       })
     }

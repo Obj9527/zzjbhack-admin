@@ -48,7 +48,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/dashboard',
     children: [{
-      path: 'dashboard',
+      path: '/dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '博客管理系统', icon: 'dashboard' }
@@ -171,30 +171,30 @@ const router = createRouter()
 
 
 /*
- *  todo: bug:2021-04-10
- *  在登录状态将token清理掉，会无限循环访问/login，猜测是$store问题
+ * bug: 2021-04-10在登录状态将token清理掉，会无限循环访问/login，猜测是$store问题
+ * resolve: 2021-04-12：登录状态管理已由vuex管理，可使用getToken()获取存在cookie中的token
+ * 路由导航守卫重构到permission.js
  */
 // 挂载路由导航守卫
-router.beforeEach((to, from, next) => {
-  /*
+/*router.beforeEach((to, from, next) => {
+  /!*
   * to 将要访问的路径
   * from 从哪个路径来
   * next 函数 next() 放行 next('/login') 强制跳转
-  * */
+  * *!/
   if (to.path === '/login') {
     console.log(`to.path: ${to.path}`)
     next()
     return
   }
-  const token = window.sessionStorage.getItem('token')
+  const token = getToken()
   if (!token){
     console.log(`token: ${token}, force to /login`)
-    // todo: 先放行，之后fix bug
-    next()
+    next('/login')
   }else {
     next()
   }
-})
+})*/
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {

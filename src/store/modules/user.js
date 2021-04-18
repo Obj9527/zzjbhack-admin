@@ -10,8 +10,10 @@ const getDefaultState = () => {
   }
 }
 
+//state用来存储变量，通过 this.$store.state.* 去获取存储的变量值
 const state = getDefaultState()
 
+//在mutations里定义修改state的函数，直接修改state的值vue监听不到变化
 const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
@@ -27,6 +29,7 @@ const mutations = {
   }
 }
 
+//定义调用mutations的函数的函数，目的是实现异步调用，同步更新状态可直接调用mutations里的函数
 const actions = {
   // user login
   login({ commit }, userInfo) {
@@ -34,6 +37,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
+        //console.log(`token: ${data.token}`)
         commit('SET_TOKEN', data.token)
         setToken(data.token)
         resolve()
