@@ -64,13 +64,13 @@ export const constantRoutes = [
       {
         path: 'list',
         name: 'List',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/user/index'),
         meta: { title: '所有用户', icon: 'el-icon-user' }
       },
       {
         path: 'add',
         name: 'Add',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/user/add'),
         meta: { title: '新建用户', icon: 'el-icon-circle-plus-outline' }
       }
     ]
@@ -86,25 +86,25 @@ export const constantRoutes = [
       {
         path: 'list',
         name: 'List',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/article/index'),
         meta: { title: '所有文章', icon: 'el-icon-notebook-2' }
       },
       {
         path: 'edit',
         name: 'Edit',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/article/create'),
         meta: { title: '写文章', icon: 'el-icon-edit-outline' }
       },
       {
         path: 'category',
         name: 'Category',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/article/category'),
         meta: { title: '分类', icon: 'tree' }
       },
       {
         path: 'tag',
         name: 'Tag',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/article/tag'),
         meta: { title: '标签', icon: 'el-icon-collection-tag' }
       }
     ]
