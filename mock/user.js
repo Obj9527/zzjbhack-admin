@@ -1,7 +1,7 @@
 const Mock = require('mockjs')
 
 const data = Mock.mock({
-  'users|30': [{
+  'users|1000': [{
     id: '@id',
     user: '@name',
     'permission|1': ['admin', 'editor', 'visitor'],
@@ -43,7 +43,7 @@ module.exports = [
       const token = tokens[username]
       // mock error
       if (!token) {
-        console.log('!token');
+        console.log('token incorrect');
         return {
           code: 60204,
           message: 'Account and password are incorrect.'
@@ -100,12 +100,36 @@ module.exports = [
     type: "get",
     response: _ => {
       const users = data.users;
-      console.log(`data: ${data}, users: ${users}`)
+      //console.log(`data: ${data}, users: ${users}`)
       return {
         code: 20000,
         data: {
           total: users.length,
           users: users
+        }
+      }
+    }
+  },
+  {
+    url: '/vue-element-admin/search/user',
+    type: 'get',
+    response: (params) => {
+      let queryName = params.name
+      console.log(queryName)
+      let results = []
+      let i = 0
+      for (let key in users) {
+        let name = users[key].name
+        if (name.match(queryName) && queryName != undefined){
+          console.log(queryName)
+          results[i++] = name
+        }
+      }
+      console.log(results)
+      return {
+        code: 20000,
+        data: {
+          items: results
         }
       }
     }

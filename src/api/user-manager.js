@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function listUser() {
   return request({
-    url: '/vue-admin-template/user/list',
+    url: 'http://127.0.0.1:3000/cms/get-users',
     method: 'get'
   })
 }

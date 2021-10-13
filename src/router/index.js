@@ -56,6 +56,33 @@ export const constantRoutes = [
   },
 
   {
+    path: '/test',
+    component: Layout,
+    redirect: '/test/form',
+    meta: { title: 'test', icon: 'el-icon-present' },
+    children: [
+      {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/test/index'),
+        meta: {
+          title: '表单',
+          icon: 'el-icon-platform-eleme'
+        }
+      },
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/test/table'),
+        meta: {
+          title: '表格',
+          icon: 'el-icon-table-lamp'
+        }
+      }
+    ]
+  },
+
+  {
     path: '/user',
     component: Layout,
     redirect: '/user/list',
@@ -66,12 +93,6 @@ export const constantRoutes = [
         name: 'List',
         component: () => import('@/views/user/index'),
         meta: { title: '所有用户', icon: 'el-icon-user' }
-      },
-      {
-        path: 'add',
-        name: 'Add',
-        component: () => import('@/views/user/add'),
-        meta: { title: '新建用户', icon: 'el-icon-circle-plus-outline' }
       }
     ]
   },
@@ -169,14 +190,13 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-
 /*
  * bug: 2021-04-10在登录状态将token清理掉，会无限循环访问/login，猜测是$store问题
  * resolve: 2021-04-12：登录状态管理已由vuex管理，可使用getToken()获取存在cookie中的token
  * 路由导航守卫重构到permission.js
  */
 // 挂载路由导航守卫
-/*router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   /!*
   * to 将要访问的路径
   * from 从哪个路径来

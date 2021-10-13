@@ -1,5 +1,7 @@
 import request from '@/utils/request'
 
+const preAddress = 'http://127.0.0.1:3000/api'
+
 export function fetchList(query) {
   return request({
     url: '/vue-element-admin/article/list',
@@ -26,7 +28,7 @@ export function fetchPv(pv) {
 
 export function createArticle(data) {
   return request({
-    url: '/vue-element-admin/article/create',
+    url: preAddress + '/articles',
     method: 'post',
     data
   })
@@ -34,7 +36,7 @@ export function createArticle(data) {
 
 export function updateArticle(data) {
   return request({
-    url: '/vue-element-admin/article/update',
+    url: preAddress + '/article/update',
     method: 'post',
     data
   })

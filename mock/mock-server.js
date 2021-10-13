@@ -1,6 +1,8 @@
-const chokidar = require('chokidar')
-const bodyParser = require('body-parser')
+const chokidar = require('chokidar') // mock server 热更新
+const bodyParser = require('body-parser') // 解析请求
 const chalk = require('chalk')
+
+
 const path = require('path')
 const Mock = require('mockjs')
 
@@ -42,6 +44,8 @@ const responseFake = (url, type, respond) => {
     }
   }
 }
+
+console.log(chalk.magentaBright(`\n > Mock Server started  ${path}`))
 
 module.exports = app => {
   // parse app.body

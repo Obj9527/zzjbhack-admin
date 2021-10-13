@@ -1,13 +1,12 @@
 <template>
-
+  <article-detail :is-edit="false" />
 </template>
 
 <script>
-    export default {
-        name: "create"
-    }
+import ArticleDetail from './components/ArticleDetail'
+export default {
+  name: 'CreateArticle',
+  components: { ArticleDetail }
+}
 </script>
 
-<style scoped>
-
-</style>

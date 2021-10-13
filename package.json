@@ -1,8 +1,8 @@
 {
-  "name": "vue-admin-template",
+  "name": "power-CMS",
   "version": "4.4.0",
-  "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
-  "author": "Pan <panfree23@gmail.com>",
+  "description": "A powerful CMS build with Vue + Element-UI",
+  "author": "Obj9527 <huangchaojie@qq.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build:prod": "vue-cli-service build",
@@ -20,6 +20,7 @@
     "element-ui": "2.13.2",
     "file-saver": "^2.0.5",
     "js-cookie": "2.2.0",
+    "jszip": "^3.6.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",

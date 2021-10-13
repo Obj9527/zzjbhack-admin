@@ -13,7 +13,7 @@ const name = defaultSettings.title || '重装机兵' // page title
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
-const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+const port = process.env.port || process.env.npm_config_port || 9528
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -29,14 +29,16 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
+  //
   devServer: {
     port: port,
-    open: true,
+    open: true, // 编译完打开浏览器
+    hot: true, // 热加载
     overlay: {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js') // devServer启动前执行mock-server.js
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
