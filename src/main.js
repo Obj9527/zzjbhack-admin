@@ -23,14 +23,26 @@ import '@/permission' // permission control
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-/*if (process.env.NODE_ENV === 'production') {
+/* if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }*/
 
-Vue.use(ElementUI, {size: 'small'})
+Vue.use(ElementUI, { size: 'small' })
 
 Vue.config.productionTip = false
+
+// eslint-disable-next-line no-extend-native
+Function.prototype.myCall = function(context) {
+  if (typeof this !== 'function') {
+    throw new Error('type Error')
+  }
+  context = context || window
+  context.fn = this
+  const args = [...arguments].slice(1)
+  const result = context.fn(args)
+  return result
+}
 
 new Vue({
   el: '#app',
