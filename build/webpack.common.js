@@ -15,15 +15,16 @@ const ENV_CONFIG = envConfig[process.env.NODE_ENV];
 
 module.exports = {
   entry: {
-    app: '.src/main.js'
+    app: 'src/main.js'
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json']
-  },
-  alias: {
-    src: pathJoin(__dirname, '../src'),
-    components: pathJoin(__dirname, '../src/components'),
-    api: pathJoin(__dirname, '../src/api')
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': pathJoin(__dirname, '../src'),
+      src: pathJoin(__dirname, '../src'),
+      components: pathJoin(__dirname, '../src/components'),
+      api: pathJoin(__dirname, '../src/api')
+    },
   },
   output: {
     // 输出文件的名字
@@ -50,11 +51,11 @@ module.exports = {
             options: {
               loaders: {
                 css: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+              },
+              compilerOptions: {
+                preserveWhitespace: false
               }
             },
-            compilerOptions: {
-              preserveWhitespace: false
-            }
           }
         ]
       },
